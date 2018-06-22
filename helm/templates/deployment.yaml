@@ -1,0 +1,51 @@
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: {{ template "slackbot.fullname" . }}
+  labels:
+    app: {{ template "slackbot.name" . }}
+    chart: {{ template "slackbot.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ template "slackbot.name" . }}
+      release: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app: {{ template "slackbot.name" . }}
+        release: {{ .Release.Name }}
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}-redis
+          image: redis
+          imagePullPolicy: IfNotPresent
+        - name: {{ .Chart.Name }}
+          command: ["python3"]
+          args: ["/slackbot/run_will.py"]
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          envFrom:
+          - configMapRef:
+              name: {{ template "slackbot.fullname" . }}
+          env:
+            - name: WILL_SLACK_API_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  key: slack_api_token
+                  name: slackbot
+          ports:
+            - name: http
+              containerPort: 80
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http

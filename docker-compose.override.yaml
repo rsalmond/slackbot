@@ -1,0 +1,7 @@
+version: '3'
+
+services:
+  slackbot:
+    volumes:
+      - ./slackbot:/slackbot
+    command: tail -f /dev/null

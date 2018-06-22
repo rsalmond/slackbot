@@ -1,0 +1,22 @@
+{{- $fullName := include "slackbot.fullname" . -}}
+apiVersion: certmanager.k8s.io/v1alpha1
+kind: Certificate
+metadata:
+  name: {{ $fullName }}
+spec:
+  secretName: {{ $fullName }}
+  dnsNames:
+    {{- range .Values.ingress.hosts }}
+    - {{ . }}
+    {{- end }}
+  acme:
+    config:
+    - http01:
+        ingressClass: {{ .Values.certificate.class }}
+      domains:
+        {{- range .Values.ingress.hosts }}
+        - {{ . }}
+        {{- end }}
+  issuerRef:
+    name: {{ .Values.certificate.issuerName }}
+    kind: {{ .Values.certificate.issuerKind }}

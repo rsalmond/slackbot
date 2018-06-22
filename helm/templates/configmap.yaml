@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "slackbot.fullname" . }}
+  labels:
+    app: {{ template "slackbot.name" . }}
+    chart: {{ template "slackbot.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+data:
+  "THING": stuff
