@@ -8,10 +8,15 @@ from will import settings
 from will.plugin import WillPlugin
 from will.decorators import respond_to, periodic, hear, randomly, route, rendered_template, require_settings
 
+KUBE_OK = True
+
 try:
     kubeconfig.load_incluster_config()
 except(IOError,ConfigException):
-    kubeconfig.load_kube_config()
+    try:
+        kubeconfig.load_kube_config()
+    except(FileNotFoundError):
+        KUBE_OK = False
 
 api = apps_v1_api.AppsV1Api()
 
@@ -75,8 +80,15 @@ class MorningPlugin(WillPlugin):
 
     @respond_to('^upgrade')
     def do_upgrade(self, message):
-        self.reply('kk updating deployment. brb')
-        try:
-            roll_pod()
-        except Exception as e:
-            self.reply('Oops, something borked: {}'.format(e))
+        if KUBE_OK:
+            self.reply('kk updating deployment. brb')
+            try:
+                roll_pod()
+            except Exception as e:
+                self.reply('Oops, something borked: {}'.format(e))
+        else:
+            self.reply('I cant update the deployment right now, I dont have a valid kubernetes client config to authenticate.')
+
+    @respond_to('^slackbot version')
+    def say_version(self, message):
+        self.reply('My slackbot version is {}.'.format(getattr(settings, 'SLACKBOT_VERSION', None)))
