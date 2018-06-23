@@ -1,0 +1,16 @@
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: RoleBinding
+metadata:
+  name: {{ template "slackbot.fullname" . }}
+  labels:
+    app: {{ template "slackbot.name" . }}
+    chart: {{ template "slackbot.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: {{ template "slackbot.fullname" . }}
+subjects:
+- kind: ServiceAccount
+  name: {{ template "slackbot.fullname" . }}

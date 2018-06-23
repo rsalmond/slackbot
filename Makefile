@@ -8,7 +8,7 @@ BUILD    = $(VERSION)-$(RELEASE)
 LDFLAGS  = "-X main.buildVersion=$(BUILD)"
 
 build: 
-	docker build -t rsalmond/${NAME}:${VERSION} .
+	docker build -t rsalmond/${NAME}:${VERSION} . --build-arg tag=${VERSION}
 
 push:
 	docker push rsalmond/${NAME}:${VERSION}

@@ -1,0 +1,15 @@
+{{- $fullName := include "slackbot.fullname" . -}}
+kind: Role
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: {{ template "slackbot.fullname" . }}
+  labels:
+    app: {{ template "slackbot.name" . }}
+    chart: {{ template "slackbot.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+rules:
+- apiGroups: ["apps"]
+  resources: ["deployments"]
+  resourceNames: [{{ $fullName | quote }}]
+  verbs: ["patch", "list", "get"]
