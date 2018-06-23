@@ -1,3 +1,5 @@
+#from version import WILL_SLACKBOT_VERSION
+
 # Welcome to Will's settings.
 #
 
@@ -81,7 +83,6 @@ PLUGIN_BLACKLIST = [
 # Platforms and mediums messages can come in and go out on.
 IO_BACKENDS = [
     "will.backends.io_adapters.slack",
-    "# will.backends.io_adapters.rocketchat",
     "will.backends.io_adapters.shell",
 ]
 
@@ -170,7 +171,7 @@ FUZZY_REGEX_ALLOWABLE_ERRORS = 3
 # in respond_to and hear actions.
 # Group names can be any string, and the list is composed of user handles.
 # ACL = {
-#     "admins": ["sarah", "sue", "steven"]
+#     "admins": ["rawb"]
 # }
 #
 # By default, if no ACL is set, all users can perform all actions - but warnings
