@@ -1,5 +1,3 @@
-#from version import WILL_SLACKBOT_VERSION
-
 # Welcome to Will's settings.
 #
 
