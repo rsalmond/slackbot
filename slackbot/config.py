@@ -56,15 +56,18 @@ PLUGINS = [
     #"will.plugins.web",
 
     # All plugins in your project.
-    "plugins",
+    "plugins.botops",
+    "plugins.webhooks",
 ]
 
 # Don't load any of the plugins in this list.  Same options as above.
 PLUGIN_BLACKLIST = [
+    "will.plugins.admin",
     "will.plugins.productivity.hangout",   # Because it requires a HANGOUT_URL
     "will.plugins.productivity.bitly",   # Because it requires a BITLY_ACCESS_TOKEN key and the bitly_api library
     "will.plugins.devops.bitbucket_is_up",   # Because most folks use github.
     "will.plugins.devops.pagerduty",  # Because it requires a PAGERDUTY_SUBDOMAIN and PAGERDUTY_API_KEY key
+    "will.plugins.web",
 ]
 
 # A secret key, used to namespace this instance of will and secure pubsub contents.

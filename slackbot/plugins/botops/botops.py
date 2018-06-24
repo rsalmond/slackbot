@@ -76,7 +76,7 @@ def roll_pod():
     deploy.spec.template.metadata.labels['date'] = str(int(time()))
     return set_deployment(deploy)
 
-class MorningPlugin(WillPlugin):
+class BotopsPlugin(WillPlugin):
 
     @respond_to('^upgrade')
     def do_upgrade(self, message):
