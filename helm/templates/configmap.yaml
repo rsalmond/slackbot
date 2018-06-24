@@ -10,4 +10,5 @@ metadata:
 data:
   WILL_LOGLEVEL: DEBUG
   WILL_K8S_NAME: {{ template "slackbot.fullname" . }}
+  SLACK_DEFAULT_CHANNEL: general
   TZ: 'US/Pacific'
