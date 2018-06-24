@@ -46,14 +46,14 @@
 
 PLUGINS = [
     # Built-ins
-    "will.plugins.admin",
+    #"will.plugins.admin",
     "will.plugins.chat_room",
     "will.plugins.devops",
     "will.plugins.friendly",
     "will.plugins.fun",
     "will.plugins.help",
     "will.plugins.productivity",
-    "will.plugins.web",
+    #"will.plugins.web",
 
     # All plugins in your project.
     "plugins",
@@ -150,7 +150,7 @@ FUZZY_REGEX_ALLOWABLE_ERRORS = 3
 # The backend and room Will should talk to if the trigger is a webhook and he isn't told
 # a specific room.  Default is the first of IO_BACKENDS and ROOMS.
 # DEFAULT_BACKEND = "will.backends.io_adapters.slack"
-# DEFAULT_ROOM = 'Notifications'
+# DEFAULT_ROOM = 'general'
 
 # Port to bind the web server to (defaults to $PORT, then 80.)
 # Set > 1024 to run without elevated permission.
