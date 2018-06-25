@@ -20,4 +20,5 @@ class WebhookPlugin(WillPlugin):
 
     @respond_to("(what is|what's) your (website|url)")
     def what_is_website(self, message):
+        """ whats your website: retrive the external URL for the webhook server """
         self.reply("It's %s" % settings.PUBLIC_URL)

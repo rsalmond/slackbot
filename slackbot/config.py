@@ -58,6 +58,7 @@ PLUGINS = [
     # All plugins in your project.
     "plugins.botops",
     "plugins.webhooks",
+    "plugins.gadgets",
 ]
 
 # Don't load any of the plugins in this list.  Same options as above.

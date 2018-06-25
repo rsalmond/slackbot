@@ -1,4 +1,6 @@
 from time import time
+from uptime import boottime
+from datetime import datetime as dt
 
 from kubernetes import config as kubeconfig
 from kubernetes.config import ConfigException
@@ -78,8 +80,17 @@ def roll_pod():
 
 class BotopsPlugin(WillPlugin):
 
+    @respond_to('^uptime')
+    def check_uptime(self, message):
+        """ uptime: report system uptime """
+        uptime = dt.now() - boottime()
+        hours = uptime.seconds // 3600
+        minutes = (uptime.seconds // 60) % 60
+        self.reply('Host has been up for {} days {} minutes and {} seconds.'.format(uptime.days, hours, minutes))
+
     @respond_to('^upgrade')
     def do_upgrade(self, message):
+        """ upgrade: pull latest slackbot image from dockerhub """
         if KUBE_OK:
             self.reply('kk updating deployment. brb')
             try:

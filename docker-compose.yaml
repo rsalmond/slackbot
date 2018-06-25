@@ -3,7 +3,7 @@ version: '3'
 services:
   slackbot:
     container_name: slackbot
-    image: rsalmond/slackbot:0.0.1
+    image: rsalmond/slackbot:latest
     build: .
     environment:
       WILL_REDIS_URL: 'redis://redis:6379'

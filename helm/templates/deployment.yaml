@@ -43,6 +43,11 @@ spec:
                 secretKeyRef:
                   key: slackbot_api_key
                   name: slackbot
+            - name: WILL_ORBNEXT_DEVICE_ID
+              valueFrom:
+                secretKeyRef:
+                  key: orbnext_device_id
+                  name: slackbot
           ports:
             - name: http
               containerPort: 80
