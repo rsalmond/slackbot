@@ -47,6 +47,11 @@ spec:
             - name: http
               containerPort: 80
               protocol: TCP
+          lifecycle:
+            preStop:
+              exec:
+                # SIGINT stops all of Will's subprocesses
+                command: ["/bin/kill", "-SIGINT", "1"]
           livenessProbe:
             httpGet:
               path: /healthz
