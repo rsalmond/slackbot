@@ -100,6 +100,7 @@ class BotopsPlugin(WillPlugin):
         else:
             self.reply('I cant update the deployment right now, I dont have a valid kubernetes client config to authenticate.')
 
-    @respond_to('^slackbot version')
+    @respond_to('^version')
     def say_version(self, message):
+        """ version: say what my current version is. """
         self.reply('My slackbot version is {}.'.format(getattr(settings, 'SLACKBOT_VERSION', None)))
