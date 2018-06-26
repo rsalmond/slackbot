@@ -1,0 +1,22 @@
+language: python
+python:
+- '2.7'
+- '3.3'
+- pypy
+services:
+  - docker
+before_deploy:
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+deploy:
+  provider: script
+  script: make
+  skip_cleanup: true
+  notifications:
+    on_success: never
+    on_failure: change
+after_success:
+  - make push
+env:
+  global:
+  - secure: XSrM0X5XYMNlero+3pWXPCQURXJE433cc1m55ucbt0PMN+Wbfk9n4cwY3iP358kRikcaTFVpcYBPUdxdUyE6G9bwkbivbdBpE+VIDS1Lm30vg+3OPhDYt+9B/R+5QdHLLjO2/i0nNprDMtBJ11OIntvsGag2OEDIZtnU5Qbhzb4bF61YaRYo+nxnUhBsOIAG2k9+zWjlIy3F4Z9MLtW5izyaexEsZmVG7HCss7xelpq0ni7xhvghnpuQAzXqspEWlyDEMLGLSh3CBr+CEACV1n9X3oaUMZ8e5vTcF0BpWd9QApnBYGnf3oyMMJciNSWDg63qU9Q6UExdiB+waiTt1j5300RHzJ+VlAeWd9jHTKEo5HfRp/9cXg0tHAuEFjEMrQVTQYxxOkRI44NV/9MxcHNeGbl3aov7tThhWd8l0+XMrJT5EswV+XDwKgKrnULqMAn7PtxHjXg4mRVLI+TqjM6eZInYjn/8Z5/vrkkRkIdMm6kBovWeE+PjeTFanKyb7+HszWRmnfFEgUYXbUqJkGd57JVcfxFJVZ0nEIIplvgJjvqp6x2jTG61gakbN9hAKH+k+ALgtD4QK2cxm8DPC5mNj0oEybFDk1LxU2sXcUhCOkuLRtCv2XfW10SzLjiTshblxgJMWj6w3+PNjbnDJH824QVUl4L3gPQ+aSxw5X4=
+  - secure: kXlhgJtAiIUyutSweZmPTwIJ0wD160JINTF1fmfeG3r9FRmgjHMGbmPNGkAn5ilgXN/yOS0TAeZOzIpkY4yEv/7YEhciIjpJ6K/oDZ2D0z/IW15Aqn4Imtq2XzNZcRXcVppijoBXVjvEmjPBPQqqdDjPFx6sJqK92VY6eHCoBRG1BfbYUkQupWWA4Ma7vHxckghoFFUzN6YGDF9p1Tji9gJvLXhGzOOVp+21bznzA+zpvMmsljgWkjezZDp2670vP6rPRKypm/p0WXuxw1CMzwpjOkkctA5YspwMdnr2XDPo+GbqeT8Qsy3zzTRscq4zsLL9W/OUFr8wjiB+LiFMU7mkQtG9u+YE4albN8bzcBMjQmToUL9hi/QIxPjvFStTh8z9ZpAK7BYUkRTeFU2kyn9RRdHgTljhjCWN61EHi3JdM7ZVBCOlnQJR+AzjRvrftim2sUpRCnbtqC8JRyNYvjVgq+wuglRZ2GKHP2B+foNDhS/oadmwSoKq46GwIgFQ9dFDBHQMQcc8T4/Ro7dQWbjoE5Ipn4ucFCrghmh4A/6A1uIj5mpSqZppC2XgwtiOV4ECwkzqfOSB29xbdFbaLiY61gsGJcSK71qVlxHEgFhZ0fh1mNW++w25UydQHUMfJKOeZTPDJNh7ynBEkvfjtgnWWL+c6Tp0gSPr2Uk12ik=
