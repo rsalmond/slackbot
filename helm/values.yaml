@@ -26,6 +26,11 @@ ingress:
     - hosts:
         - graildiary.net
 
+slackbot:
+  log_level: DEBUG
+  time_zone: "US/Pacific"
+  default_channel: general
+
 certificate:
   class: nginx
   issuerName: letsencrypt-prod
