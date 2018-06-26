@@ -1,8 +1,6 @@
 language: python
 python:
-- '2.7'
-- '3.3'
-- pypy
+- '3.6'
 services:
   - docker
 before_deploy:
