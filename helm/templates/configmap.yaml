@@ -8,7 +8,8 @@ metadata:
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
 data:
-  WILL_LOGLEVEL: DEBUG
+  WILL_LOGLEVEL: {{ .Values.slackbot.log_level }}
   WILL_K8S_NAME: {{ template "slackbot.fullname" . }}
-  WILL_SLACK_DEFAULT_CHANNEL: general
-  TZ: 'US/Pacific'
+  WILL_DOCKER_REPO: {{ .Values.image.repository }}
+  WILL_SLACK_DEFAULT_CHANNEL: {{ .Values.slackbot.default_channel }}
+  TZ: {{ .Values.slackbot.time_zone }}
