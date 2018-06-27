@@ -120,6 +120,7 @@ class BotopsPlugin(WillPlugin):
 
     @respond_to('^upgrade to (?P<version>\d+\.\d+\.\d+)')
     def upgrade_to_version(self, message, version):
+        """ upgrade to <version number>: fetch and run a specific version of slackbot."""
         try:
             set_current_tag(version)
         except Exception as e:
@@ -132,6 +133,7 @@ class BotopsPlugin(WillPlugin):
 
     @respond_to('^releases')
     def check_releases(self, message):
+        """ releases: list available slackbot releases """
         try:
             releases = list_dockerhub_tags()
         except Exception as e:
@@ -153,7 +155,7 @@ class BotopsPlugin(WillPlugin):
         self.reply('Host has been up for {} days {} minutes and {} seconds.'.format(uptime.days, hours, minutes))
 
     @respond_to('^restart')
-    def do_upgrade(self, message):
+    def do_restart(self, message):
         """ restart: bounce the slackbot container """
         self.reply(":okay: I guess I'll just kill myself ...")
 

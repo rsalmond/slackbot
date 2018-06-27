@@ -48,6 +48,16 @@ spec:
                 secretKeyRef:
                   key: orbnext_device_id
                   name: slackbot
+            - name: WILL_DOCKER_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  key: docker_username
+                  name: slackbot
+            - name: WILL_DOCKER_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: docker_password
+                  name: slackbot
           ports:
             - name: http
               containerPort: 80
