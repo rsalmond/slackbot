@@ -120,7 +120,7 @@ class BotopsPlugin(WillPlugin):
 
     @respond_to('^upgrade to (?P<version>\d+\.\d+\.\d+)')
     def upgrade_to_version(self, message, version):
-        """ upgrade to <version number>: fetch and run a specific version of slackbot."""
+        """ upgrade to x.y.z: fetch and run a specific version of slackbot."""
         try:
             set_current_tag(version)
         except Exception as e:

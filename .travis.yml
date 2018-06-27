@@ -4,6 +4,8 @@ services:
 branches:
   only:
     - master
+before_script:
+  - docker pull rsalmond/slackbot:latest
 script: make
 after_success:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
