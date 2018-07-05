@@ -18,6 +18,14 @@ class WebhookPlugin(WillPlugin):
                 words = str(self.request.json.get('words'))
                 self.say(words)
 
+            # try getting auth from json body
+            payload = self.request.json
+            if 'auth' in payload:
+                if payload.get('auth') == api_key:
+                    words = str(self.request.json.get('words'))
+                    self.say(words)
+
+
     @respond_to("(what is|what's) your (website|url)")
     def what_is_website(self, message):
         """ whats your website: retrive the external URL for the webhook server """
