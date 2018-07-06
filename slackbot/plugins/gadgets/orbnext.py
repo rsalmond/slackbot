@@ -25,6 +25,8 @@ colors['pink'] = 'FF00FF'
 colors['white'] = 'FFFFFF'
 
 def set_color(color):
+    if color not in colors:
+        return False
     data = {"program":"Demo","color":"#{}".format(colors.get(color))}
     payload = bytes(json.dumps(data), 'utf-8')
     req = urllib.request.Request(URL, payload)
