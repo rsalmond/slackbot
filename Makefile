@@ -1,7 +1,7 @@
 # Build/version information
 NAME    :=$(shell basename `git rev-parse --show-toplevel`)
 RELEASE :=$(shell git rev-parse --verify --short HEAD)
-VERSION  = 0.0.6
+VERSION  = 0.0.7
 BUILD    = $(VERSION)-$(RELEASE)
 LDFLAGS  = "-X main.buildVersion=$(BUILD)"
 
