@@ -35,3 +35,12 @@ certificate:
   class: nginx
   issuerName: letsencrypt-prod
   issuerKind: ClusterIssuer
+
+bouncer:
+  image:
+    repository: rsalmond/bouncer
+    tag: latest
+    pullPolicy: Always
+  cron:
+    # hourly
+    schedule: "0 * * * *"
