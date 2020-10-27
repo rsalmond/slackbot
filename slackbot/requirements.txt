@@ -9,7 +9,7 @@ cffi==1.11.5
 chardet==3.0.4
 CherryPy==3.6.0
 clint==0.3.7
-cryptography==2.2.2
+cryptography==3.2
 dill==0.2.1
 dnspython==1.15.0
 ecdsa==0.13
